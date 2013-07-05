@@ -1,0 +1,1 @@
+Add Browser, Browser Version, the OS and a mobile flag to the Body class
