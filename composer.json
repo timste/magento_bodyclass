@@ -1,0 +1,15 @@
+{
+    "name":"timste/bodyclass",
+    "type":"magento-module",
+    "license":"CC-BY-3.0",
+    "homepage":"https://github.com/timste/magento_bodyclass",
+    "description":"Add Browser, Browser Version, the OS and a mobile flag to the Body class",
+    "authors":[
+        {
+            "name":"Timste",
+        }
+    ],
+    "require":{
+        "magento-hackathon/magento-composer-installer":"*"
+    }
+}
