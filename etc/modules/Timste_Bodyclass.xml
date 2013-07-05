@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <modules>
-        <Timste_Bodyclass>
-            <active>true</active>
-            <codePool>community</codePool>
-        </Timste_Bodyclass>
-    </modules>
-</config>
