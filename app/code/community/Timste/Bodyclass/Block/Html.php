@@ -38,7 +38,7 @@ class Timste_Bodyclass_Block_Html extends Mage_Page_Block_Html
         /**
          * Operating systems (check Windows CE before Windows and Android before Linux!)
          */
-        $GLOBALS['timste']['os'] = array
+        $timste['os'] = array
         (
             'Macintosh'     => array('os'=>'mac',        'mobile'=>false),
             'Windows CE'    => array('os'=>'win-ce',     'mobile'=>true),
@@ -62,7 +62,7 @@ class Timste_Bodyclass_Block_Html extends Mage_Page_Block_Html
         /**
          * Browsers (check OmniWeb and Silk before Safari and Opera Mini/Mobi before Opera!)
          */
-        $GLOBALS['timste']['browser'] = array
+        $timste['browser'] = array
         (
             'MSIE'       => array('browser'=>'ie',           'shorty'=>'ie', 'engine'=>'trident', 'version'=>'/^.*?MSIE (\d+(\.\d+)*).*$/'),
             'Firefox'    => array('browser'=>'firefox',      'shorty'=>'fx', 'engine'=>'gecko',   'version'=>'/^.*Firefox\/(\d+(\.\d+)*).*$/'),
@@ -91,7 +91,7 @@ class Timste_Bodyclass_Block_Html extends Mage_Page_Block_Html
         $engine = '';
 
         // Operating system
-        foreach ($GLOBALS['timste']['os'] as $k=>$v)
+        foreach ($timste['os'] as $k=>$v)
         {
             if (stripos($ua, $k) !== false)
             {
@@ -104,7 +104,7 @@ class Timste_Bodyclass_Block_Html extends Mage_Page_Block_Html
         $return['os'] = $os;
 
         // Browser and version
-        foreach ($GLOBALS['timste']['browser'] as $k=>$v)
+        foreach ($timste['browser'] as $k=>$v)
         {
             if (stripos($ua, $k) !== false)
             {
