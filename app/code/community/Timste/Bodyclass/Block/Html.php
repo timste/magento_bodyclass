@@ -151,7 +151,10 @@ class Timste_Bodyclass_Block_Html extends Mage_Page_Block_Html
      */
     public function getUserAgent()
     {
-        $ua = $_SERVER['HTTP_USER_AGENT'];
+        $ua = 'unknown';
+        if (isset($_SERVER['HTTP_USER_AGENT'])) {
+            $ua = $_SERVER['HTTP_USER_AGENT'];
+        }
         $cache = Mage::app()->loadCache(self::CACHE_KEY);
         if (is_array($cache) && isset($cache[$ua])) {
             return $cache[$ua];
