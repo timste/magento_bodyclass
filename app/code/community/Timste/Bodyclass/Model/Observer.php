@@ -3,13 +3,14 @@
 /**
  *
  */
-class Timste_Bodyclass_Block_Html extends Mage_Page_Block_Html
+class Timste_Bodyclass_Model_Observer
 {
     /**
      * @var string
      */
     protected $_useragent = '';
 
+    const CACHE_GROUP = 'block_html';
     const CACHE_KEY = 'timste_bodyclass_useragent';
 
     /**
@@ -118,31 +119,36 @@ class Timste_Bodyclass_Block_Html extends Mage_Page_Block_Html
 
 
     /**
+     * add CSS classes for different browsers and stores to HTML body
      *
+     * @param Varien_Event_Observer $observer - observer out of event
+     *                              core_block_abstract_to_html_before
+     *
+     * @return Timste_Bodyclass_Model_Observer
      */
-    public function __construct()
+    public function addTimsteBodyclass(Varien_Event_Observer $observer)
     {
-        parent::__construct();
+        $block = $observer->getBlock();
 
-        $this->_urls = array(
-            'base'      => Mage::getBaseUrl('web'),
-            'baseSecure'=> Mage::getBaseUrl('web', true),
-            'current'   => $this->getRequest()->getRequestUri()
-        );
+        if($block instanceof Mage_Page_Block_Html) {
+            $result = $this->getUserAgent();
 
-        $action = Mage::app()->getFrontController()->getAction();
-        if ($action) {
-            $this->addBodyClass($action->getFullActionName('-'));
+            $block->addBodyClass($result['os']);
+            $block->addBodyClass($result['browser']);
+            $block->addBodyClass( 'v'.$result['version']);
+            $block->addBodyClass($result['engine']);
+
+            /* add the store code */
+            try{
+                $store_code = Mage::app()->getStore()->getCode();
+                $block->addBodyClass($store_code);
+            }
+            catch( Exception $e ){
+                // if error happens, no store is available as CSS class
+            }
         }
 
-        $result = $this->getUserAgent();
-
-        $this->addBodyClass($result['os']);
-        $this->addBodyClass($result['browser']);
-        $this->addBodyClass($result['version']);
-        $this->addBodyClass($result['engine']);
-
-        $this->_beforeCacheUrl();
+        return $this;
     }
 
 
