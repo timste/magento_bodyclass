@@ -7,14 +7,14 @@
     </modules>
     <frontend>
         <events>
-            <core_block_abstract_to_html_before>
+            <controller_action_layout_generate_blocks_after>
                 <observers>
                     <timste_bodyclass>
                         <class>Timste_Bodyclass_Model_Observer</class>
                         <method>addTimsteBodyclass</method>
                     </timste_bodyclass>
                 </observers>
-            </core_block_abstract_to_html_before>
+            </controller_action_layout_generate_blocks_after>
         </events>
     </frontend>
 </config>
