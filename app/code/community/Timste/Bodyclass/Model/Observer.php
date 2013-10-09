@@ -128,22 +128,21 @@ class Timste_Bodyclass_Model_Observer
      */
     public function addTimsteBodyclass(Varien_Event_Observer $observer)
     {
-        $block = $observer->getBlock();
+        $block = $observer->getLayout()->getBlock('root');
 
-        if($block instanceof Mage_Page_Block_Html) {
+        if ($block) {
             $result = $this->getUserAgent();
 
             $block->addBodyClass($result['os']);
             $block->addBodyClass($result['browser']);
-            $block->addBodyClass( 'v'.$result['version']);
+            $block->addBodyClass('v'.$result['version']);
             $block->addBodyClass($result['engine']);
 
             /* add the store code */
-            try{
+            try {
                 $store_code = Mage::app()->getStore()->getCode();
                 $block->addBodyClass($store_code);
-            }
-            catch( Exception $e ){
+            } catch( Exception $e ) {
                 // if error happens, no store is available as CSS class
             }
         }
