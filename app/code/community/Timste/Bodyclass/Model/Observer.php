@@ -130,7 +130,7 @@ class Timste_Bodyclass_Model_Observer
     {
         $block = $observer->getLayout()->getBlock('root');
 
-        if ($block) {
+        if ($block instanceof Mage_Page_Block_Html) {
             $result = $this->getUserAgent();
 
             $block->addBodyClass($result['os']);
